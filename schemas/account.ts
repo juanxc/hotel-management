@@ -27,7 +27,7 @@ const account = {
         }),
         defineField({
             name: 'accessTokenExpires',
-            type: 'string',
+            type: 'number',
         }),
         defineField({
             name: 'user',
