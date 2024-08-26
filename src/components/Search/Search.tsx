@@ -42,7 +42,7 @@ const Search: FC<Props> = ({
                             className="w-full px-4 py-2 capitalize rounded leading-tight dark:bg-black"
                         >
                             <option value="All">All</option>
-                            <option value="Basix">Basix</option>
+                            <option value="Basix">Basic</option>
                             <option value="Luxury">Luxury</option>
                             <option value="Suite">Suite</option>
                         </select>
