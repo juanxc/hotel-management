@@ -6,8 +6,8 @@ import Rating from "../Rating/Rating";
 
 const RoomReview: FC<{roomId: string}> = ({roomId}) => {
 
-    const fetchRoomReviews = async () => {
-        const {data} = await axios.get<Review[]>(`/api/room-reviews/${roomId}`);
+    const fetchRoomReviews = async (url: string, pRoomId: string) => {
+        const {data} = await axios.get<Review[]>(`${url}/${pRoomId}`);
         return data;
     };
 
@@ -15,7 +15,7 @@ const RoomReview: FC<{roomId: string}> = ({roomId}) => {
         data: roomReviews,
         error,
         isLoading
-    } = useSWR('/api/room-reviews', fetchRoomReviews);
+    } = useSWR(['/api/room-reviews', roomId], ([url, pRoomID]) => fetchRoomReviews(url, pRoomID));
 
     if(error) throw new Error('Cannot fetch data');
     if(typeof roomReviews === 'undefined' && !isLoading)
