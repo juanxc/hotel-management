@@ -57,13 +57,13 @@ const UserDetails = (props: { params: { id: string } }) => {
     }
   };
 
-  const fetchUserBooking = async () => getUserBookings(userId);
+  const fetchUserBooking = async (userId: string) => getUserBookings(userId);
   const fetchUserData = async () => {
     const { data } = await axios.get<User>('/api/users');
     return data;
   };
 
-  const { data: userBookings, error, isLoading } = useSWR("/api/userbooking", fetchUserBooking);
+  const { data: userBookings, error, isLoading } = useSWR(["/api/userbooking", userId], ([url, userId]) => fetchUserBooking(userId));
 
   const { data: userData, isLoading: loadingUserData, error: errorGettingUserData } = useSWR("/api/users", fetchUserData);
 
